@@ -1,4 +1,5 @@
 ---
 applications:
 - name: node
+  memory: 512M
   path: target/hazelcast-node-app.jar
