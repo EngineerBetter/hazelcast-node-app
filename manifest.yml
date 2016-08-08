@@ -1,0 +1,5 @@
+---
+applications:
+- name: node
+  path: target/hazelcast-node-app.jar
+  no-route: true
