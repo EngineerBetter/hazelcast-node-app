@@ -5,6 +5,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
@@ -37,5 +40,15 @@ public class NodeIntegrationTest
 		hazelcast.getMap("test").put("foo", "bar");
 		String value = (String) hazelcast.getMap("test").get("foo");
 		assertThat(value, is("bar"));
+	}
+
+
+	@Test
+	public void indexReturnsHealthy()
+	{
+		TestRestTemplate rest = new TestRestTemplate();
+		ResponseEntity<String> response = rest.getForEntity("http://"+remoteAddr+"/", String.class);
+		assertThat(response.getStatusCode(), is(HttpStatus.OK));
+		assertThat(response.getBody(), containsString("ClusterService{address=Address["));
 	}
 }
