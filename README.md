@@ -1,6 +1,6 @@
 # hazelcast-node-app
 
-Used to demonstrate running Hazelcast as a Cloud Foundry app, which should require TCP routing to be enabled.
+Used to demonstrate running Hazelcast as a Cloud Foundry app, which _should_ require TCP routing to be enabled.
 
 ## Testing
 
